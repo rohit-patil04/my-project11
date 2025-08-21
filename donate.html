@@ -1,58 +1,140 @@
-<!DOCTYPE html> 
+ <!DOCTYPE html>
 <html lang="mr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>दान करा</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>दान करा – राजे छत्रपती गणेश मंडळ घाणेगाव</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <style>
-    body { background: #f8f9fa; }
+    body{background:#faf7f2}
+    .hero{background:linear-gradient(135deg,#ffedd5,#fde68a); border-bottom-left-radius:2rem; border-bottom-right-radius:2rem}
+    .card{border:0; box-shadow:0 10px 25px rgba(0,0,0,.06)}
+    .amount-btn{min-width:96px}
+    .upi-app{filter:grayscale(0.25)}
+    .bank-tbl td,.bank-tbl th{padding:.6rem .75rem}
+    .badge-soft{background:#fff8e1; color:#8a5d00; border:1px solid #ffecb3}
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <!-- Header / Hero -->
+  <header class="hero py-5 mb-4">
     <div class="container">
-      <a class="navbar-brand" href="index.html">गणेश उत्सव मंडळ</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="utsav.html">Utsav Details</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link active" href="donate.html">Donate</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="badge badge-soft rounded-pill mb-2"><i class="bi bi-hand-thumbs-up me-1"></i> पारदर्शकता • सेवा • संस्कृती</span>
+          <h1 class="display-5 fw-bold mb-2">दान करा</h1>
+          <p class="lead mb-3">राजे छत्रपती गणेश मंडळ घाणेगाव यांच्या <strong>गणेशोत्सव २०२५</strong> उपक्रमांना आपला हातभार लावा. आपले प्रत्येक रुपया <em>सांस्कृतिक कार्यक्रम, सामाजिक उपक्रम</em> आणि <em>सुव्यवस्था</em> यासाठी वापरला जातो.</p>
+          <ul class="mb-0 text-muted">
+            <li>अनंत चतुर्दशी: <strong>६ सप्टेंबर २०२५</strong></li>
+            <li>पावती तत्काळ डाउनलोड • UPI / बँक ट्रान्स्फर • करसवलतीसाठी तपशील (लागू असल्यास)</li>
+          </ul>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <img src="https://images.unsplash.com/photo-1594623930572-e1b4df5f0a6e?q=80&w=900&auto=format&fit=crop" class="img-fluid rounded-4" alt="Ganesh" />
+        </div>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Donation Section -->
-  <div class="container py-5">
-    <h2 class="mb-4 text-center">वर्गणी</h2>
+  <main class="container pb-5">
+    <div class="row g-4">
+      <!-- Donate Card -->
+      <div class="col-lg-7">
+        <div class="card p-4">
+          <h2 class="h4 mb-3"><i class="bi bi-heart-fill text-danger me-2"></i>आपले दान</h2>
 
-    <div class="text-center mb-4">
-      <button id="showUPI" type="button" class="btn btn-success btn-lg">📱 Pay via UPI</button>
-    </div>
+          <!-- Quick Amounts -->
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-outline-primary amount-btn" data-amt="101">₹101</button>
+            <button class="btn btn-outline-primary amount-btn" data-amt="251">₹251</button>
+            <button class="btn btn-outline-primary amount-btn" data-amt="501">₹501</button>
+            <button class="btn btn-outline-primary amount-btn" data-amt="1001">₹1001</button>
+            <button class="btn btn-outline-secondary amount-btn" id="customAmtBtn">इतर</button>
+          </div>
 
-    <!-- Hidden UPI Section -->
-    <div id="upiSection" class="text-center mb-5" style="display:none;">
-      <h4>UPI / PhonePe वर्गणी</h4>
-      <p><strong>UPI ID:</strong> rhpatil12200-1@okicici</p>
-      <p><strong>Mobile No:</strong> 8767901203</p>
-      <img src="images/upi-qr.jpg" alt="UPI QR Code" class="img-fluid rounded shadow" style="max-width:250px;">
-      <p class="mt-2 text-muted">QR कोड स्कॅन करून थेट पेमेंट करा</p>
-    </div>
-  </div>
+          <form id="donateForm" class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">पूर्ण नाव</label>
+              <input type="text" class="form-control" id="name" placeholder="उदा. रोहित पाटील" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">मोबाईल</label>
+              <input type="tel" class="form-control" id="phone" placeholder="उदा. ९८७६५४३२१०" pattern="[0-9]{10}" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">ईमेल</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">रक्कम (₹)</label>
+              <input type="number" min="1" class="form-control" id="amount" placeholder="101" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label">संदेश (ऐच्छिक)</label>
+              <textarea class="form-control" id="message" rows="2" placeholder="आपला संदेश"></textarea>
+            </div>
 
-  <script>
-    // Show UPI Section only
-    document.getElementById("showUPI").addEventListener("click", function() {
-      document.getElementById("upiSection").style.display = "block";
-    });
-  </script>
-</body>
-</html>
-   
+            <!-- UPI Pay Row -->
+            <div class="col-12">
+              <div class="alert alert-warning d-flex align-items-start" role="alert">
+                <i class="bi bi-info-circle me-2 fs-5"></i>
+                <div>
+                  UPI देयकासाठी खालील <strong>UPI बटण</strong> वापरा किंवा QR स्कॅन करा. देयक झाल्यावर पावती डाउनलोड करा.
+                </div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <button type="button" id="upiPayBtn" class="btn btn-success"><i class="bi bi-upc-scan me-1"></i> UPI ने भरा</button>
+                <button type="button" id="printReceiptBtn" class="btn btn-outline-secondary"><i class="bi bi-receipt me-1"></i> पावती प्रिंट / PDF</button>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="row g-3 align-items-center">
+                <div class="col-sm-6">
+                  <!-- Replace this image with your actual QR -->
+                  <div class="border rounded-4 p-3 text-center">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi%3A%2F%2Fpay%3Fpa%3Drajechhatrapati%40oksbi%26pn%3DRC%2520Ganesh%2520Mandal%26cu%3DINR%26am%3D501" alt="UPI QR" class="img-fluid" />
+                    <p class="small text-muted mb-0 mt-2">UPI ID: <strong id="upiIdText">rajechhatrapati@oksbi</strong></p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <p class="mb-1 fw-semibold">समर्थित अ‍ॅप्स</p>
+                  <div class="d-flex gap-3 align-items-center">
+                    <img class="upi-app" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Google_Pay_Logo.svg" width="64" alt="GPay"/>
+                    <img class="upi-app" src="https://upload.wikimedia.org/wikipedia/commons/3/3b/PhonePe-Logo.svg" width="72" alt="PhonePe"/>
+                    <img class="upi-app" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/BHIM_UPI_Logo.svg" width="60" alt="BHIM"/>
+                    <img class="upi-app" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Paytm_Logo_%282019%29.svg" width="64" alt="Paytm"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Sidebar: Bank, Impact, FAQ -->
+      <div class="col-lg-5">
+        <div class="card p-4 mb-4">
+          <h3 class="h5 mb-3"><i class="bi bi-bank me-2"></i>बँक ट्रान्स्फर तपशील</h3>
+          <table class="table table-sm bank-tbl">
+            <tbody>
+              <tr><th>खाते नाव</th><td>राजे छत्रपती गणेश मंडळ घाणेगाव</td></tr>
+              <tr><th>बँक</th><td>स्टेट बँक ऑफ इंडिया</td></tr>
+              <tr><th>खाते क्रमांक</th><td>12345678901</td></tr>
+              <tr><th>IFSC</th><td>SBIN0000001</td></tr>
+              <tr><th>UPI ID</th><td><code id="upiIdInline">rajechhatrapati@oksbi</code></td></tr>
+              <tr><th>शाखा</th><td>पुणे</td></tr>
+            </tbody>
+          </table>
+          <p class="small text-muted mb-0">कृपया <strong>NEFT/IMPS</strong> केल्यानंतर व्यवहार क्रमांक आम्हाला WhatsApp/ईमेल ने कळवा.</p>
+        </div>
+
+        <div class="card p-4 mb-4">
+          <h3 class="h5 mb-3"><i class="bi bi-graph-up-arrow me-2"></i>उद्दिष्ट व प्रगती</h3>
+          <p class="mb-2">गणेशोत्सव २०२५ साठी एकूण उद्दिष्ट: <strong>₹3,00,000</strong></p>
+          <div class="progress mb-2" role="progressbar" aria-label="progress">
+            <div class="progress-bar" id="progressBar" style="width: 45%">₹1,35,000 संकलित</div>
+          </div>
+          <p class="small text-muted mb-0">देयकानंतर ही प्रगती मंडळ प्
